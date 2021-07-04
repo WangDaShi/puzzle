@@ -1,10 +1,24 @@
 <script>
-//import { table } from "console";
+import { onMount } from "svelte";
+
+// import { table } from "console";
+    import {moveElementConfig} from "./moveElement"
 
 	export let name;
 	let lines = [1,2,3,4,5,6,7];
 	let cellWidth = '50px';
 	let width = '400px';
+
+	onMount(()=>{
+		moveElementConfig(window,document);
+		let ele = document.getElementById("aaa");
+		moveElement.add(ele);
+	});
+
+	function click(event){
+		console.log(event)
+		console.log("click!")
+	}
 </script>
 
 <main>
@@ -77,9 +91,12 @@
 		</table>
 	</div>
 
-	<div style="width:54px;height:108px;background:red">
+	<div id = 'aaa' on:click={click} style="width:54px;height:108px;background:black">
 
 	</div>
+	<!-- <div draggable="true" ondragstart={setDragStart} style="width:54px;height:108px;background:red">
+
+	</div> -->
 </main>
 
 <style>
