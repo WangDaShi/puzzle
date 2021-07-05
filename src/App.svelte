@@ -1,30 +1,25 @@
 <script>
-import { onMount } from "svelte";
 
-// import { table } from "console";
-    import {moveElementConfig} from "./moveElement"
+	import PuzzlePiece from "./PuzzlePiece.svelte";
 
 	export let name;
-	let lines = [1,2,3,4,5,6,7];
-	let cellWidth = '50px';
-	let width = '400px';
 
-	onMount(()=>{
-		moveElementConfig(window,document);
-		let ele = document.getElementById("aaa");
-		moveElement.add(ele);
-	});
-
-	function click(event){
-		console.log(event)
-		console.log("click!")
+	let pieceConfig = {
+		pieceId:'qqq',
+		pieceColor:'red',
 	}
+	
+	let pieceConfig2 = {
+		pieceId:'222',
+		pieceColor:'green',
+	}
+
 </script>
 
 <main>
 	<h1>{name}</h1>
 
-<div class="mainDiv" style="width:100%">
+	<div class="mainDiv" style="width:100%">
 
 		<table border="1" style="width:396px;margin:auto">
 			
@@ -91,12 +86,9 @@ import { onMount } from "svelte";
 		</table>
 	</div>
 
-	<div id = 'aaa' on:click={click} style="width:54px;height:108px;background:black">
+	<PuzzlePiece pieceConfig={pieceConfig}></PuzzlePiece>
+	<PuzzlePiece pieceConfig={pieceConfig2}></PuzzlePiece>
 
-	</div>
-	<!-- <div draggable="true" ondragstart={setDragStart} style="width:54px;height:108px;background:red">
-
-	</div> -->
 </main>
 
 <style>
