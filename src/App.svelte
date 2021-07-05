@@ -7,11 +7,19 @@
 	let pieceConfig = {
 		pieceId:'qqq',
 		pieceColor:'red',
+		length:4,
+		width:2,
+		cellWidth:54,
+		solidCells:[[0,0],[1,0],[2,0],[2,1],[3,1]]
 	}
 	
 	let pieceConfig2 = {
 		pieceId:'222',
 		pieceColor:'green',
+		length:3,
+		width:3,
+		cellWidth:54,
+		solidCells:[[0,2],[1,0],[1,1],[1,2],[2,0]]
 	}
 
 </script>
@@ -21,8 +29,7 @@
 
 	<div class="mainDiv" style="width:100%">
 
-		<table border="1" style="width:396px;margin:auto">
-			
+		<table border="1" cellspacing="0" style="width:396px;margin:auto">
 			<tr>
 				<td>Jan</td>
 				<td>Feb</td>
@@ -86,8 +93,8 @@
 		</table>
 	</div>
 
-	<PuzzlePiece pieceConfig={pieceConfig}></PuzzlePiece>
-	<PuzzlePiece pieceConfig={pieceConfig2}></PuzzlePiece>
+	<PuzzlePiece config={pieceConfig}></PuzzlePiece>
+	<PuzzlePiece config={pieceConfig2}></PuzzlePiece>
 
 </main>
 
@@ -98,6 +105,11 @@
 		padding: 1em;
 		max-width: 240px;
 		margin: 0 auto;
+	}
+
+	table {
+		height: 386px;
+		width: 386px;
 	}
 
 	td {

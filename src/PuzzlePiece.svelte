@@ -1,13 +1,18 @@
 <script>
     import { onMount } from "svelte";
+import { each } from "svelte/internal";
     import {moveElementConfig} from "./moveElement"
 
 	// export let pieceId;
 	// export let pieceColor;
 
-	export let pieceConfig = {
+	export let config = {
 		pieceId,
 		pieceColor,
+		length,
+		width,
+		cellWidth,
+		solidCells:[]
 	}
 
     let angle = 0;
@@ -16,7 +21,7 @@
 
 	onMount(()=>{
 		moveElementConfig(window,document);
-		let ele = document.getElementById(pieceConfig.pieceId);
+		let ele = document.getElementById(config.pieceId);
 		moveElement.add(ele);
 		ele.addEventListener('mousemove',function(e){
 			if(isMouseDown){
@@ -35,7 +40,7 @@
 				isDrag = false;
 			},200);
 		});
-    });
+	});
 
 	function click(event){
 		// console.log(isDrag);
@@ -49,15 +54,44 @@
 		isDrag = false;
 	}
 
+	function isSolid(i,j){
+		console.log(i + "," + j);
+		console.log('solidCells:' + config.solidCells);
+		// for(let p of config.solidCells){
+		// 	console.log(p);
+		// }
+		for(let p of config.solidCells){
+			console.log('p:' + p)
+			if(p[0] == i && p[1] == j){
+				console.log('true')
+				return true;
+			}else{
+				console.log('false')
+				return false;
+			}
+		}
+		return false;
+	}
+
 </script>
 
-<div id = {pieceConfig.pieceId} on:click={click} style="width:54px;height:108px;background:{pieceConfig.pieceColor};transform:rotate({angle}deg);">
-
+<div class="shape" id = {config.pieceId} on:click={click} style="width:{config.width * config.cellWidth}px;height:{config.length * config.cellWidth}px;transform:rotate({angle}deg);">
+	{#each Array(config.length) as __,row}
+		{#each Array(config.width) as _,row2}
+			{#if isSolid(row,row2)}
+				<div style="background:{config.pieceColor};with:{config.cellWidth}px;height:{config.cellWidth}px"></div>
+			{:else}
+				<div style="with:{config.cellWidth}px;height:{config.cellWidth}px"></div>
+			{/if}
+		{/each}
+	{/each}
 </div>
 
 <style>
-	div {
+	.shape {
 		left: 300px;
 		top:200px;
 	}
+
+
 </style>
