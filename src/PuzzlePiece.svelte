@@ -55,6 +55,7 @@ import { each } from "svelte/internal";
 	}
 
 	function isSolid(i,j){
+		// debugger
 		console.log(i + "," + j);
 		console.log('solidCells:' + config.solidCells);
 		// for(let p of config.solidCells){
@@ -65,9 +66,6 @@ import { each } from "svelte/internal";
 			if(p[0] == i && p[1] == j){
 				console.log('true')
 				return true;
-			}else{
-				console.log('false')
-				return false;
 			}
 		}
 		return false;
@@ -77,13 +75,15 @@ import { each } from "svelte/internal";
 
 <div class="shape" id = {config.pieceId} on:click={click} style="width:{config.width * config.cellWidth}px;height:{config.length * config.cellWidth}px;transform:rotate({angle}deg);">
 	{#each Array(config.length) as __,row}
-		{#each Array(config.width) as _,row2}
-			{#if isSolid(row,row2)}
-				<div style="background:{config.pieceColor};with:{config.cellWidth}px;height:{config.cellWidth}px"></div>
-			{:else}
-				<div style="with:{config.cellWidth}px;height:{config.cellWidth}px"></div>
-			{/if}
-		{/each}
+		<div>
+			{#each Array(config.width) as _,row2}
+				{#if isSolid(row,row2)}
+					<div style="background:{config.pieceColor};width:{config.cellWidth}px;height:{config.cellWidth}px;float:left;"></div>
+				{:else}
+					<div style="width:{config.cellWidth}px;height:{config.cellWidth}px;float:left;"></div>
+				{/if}
+			{/each}
+		</div>
 	{/each}
 </div>
 

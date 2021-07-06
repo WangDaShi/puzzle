@@ -1,26 +1,10 @@
 <script>
 
-	import PuzzlePiece from "./PuzzlePiece.svelte";
+	import PuzzlePieces from "./PuzzlePieces.svelte";
 
 	export let name;
 
-	let pieceConfig = {
-		pieceId:'qqq',
-		pieceColor:'red',
-		length:4,
-		width:2,
-		cellWidth:54,
-		solidCells:[[0,0],[1,0],[2,0],[2,1],[3,1]]
-	}
-	
-	let pieceConfig2 = {
-		pieceId:'222',
-		pieceColor:'green',
-		length:3,
-		width:3,
-		cellWidth:54,
-		solidCells:[[0,2],[1,0],[1,1],[1,2],[2,0]]
-	}
+
 
 </script>
 
@@ -93,8 +77,7 @@
 		</table>
 	</div>
 
-	<PuzzlePiece config={pieceConfig}></PuzzlePiece>
-	<PuzzlePiece config={pieceConfig2}></PuzzlePiece>
+	<PuzzlePieces></PuzzlePieces>
 
 </main>
 
