@@ -1,10 +1,7 @@
 <script>
     import { onMount } from "svelte";
-import { each } from "svelte/internal";
+	import { each } from "svelte/internal";
     import {moveElementConfig} from "./moveElement"
-
-	// export let pieceId;
-	// export let pieceColor;
 
 	export let config = {
 		pieceId,
@@ -22,28 +19,33 @@ import { each } from "svelte/internal";
 	onMount(()=>{
 		moveElementConfig(window,document);
 		let ele = document.getElementById(config.pieceId);
-		moveElement.add(ele);
+		makeEleMoveable();
 		ele.addEventListener('mousemove',function(e){
 			if(isMouseDown){
 				isDrag = true;
-				// console.log('move');
 			}
 		});
 		ele.addEventListener('mousedown',function(e){
 			isMouseDown = true;
-			// console.log('down');
 		});
 		ele.addEventListener('mouseup',function(e){
 			isMouseDown = false;
-			// console.log('up');
 			setTimeout(()=>{
 				isDrag = false;
 			},200);
 		});
 	});
 
+	function makeEleMoveable(){
+		let ele = document.getElementById(config.pieceId);
+		for(let cell of config.solidCells){
+			let id = `${config.pieceId}_${cell[0]}_${cell[1]}`;
+			let moveEle = document.getElementById(id);
+			moveElement.add(ele,moveEle);
+		}
+	}
+
 	function click(event){
-		// console.log(isDrag);
 		if(isDrag){
 			return;
 		}
@@ -55,16 +57,8 @@ import { each } from "svelte/internal";
 	}
 
 	function isSolid(i,j){
-		// debugger
-		console.log(i + "," + j);
-		console.log('solidCells:' + config.solidCells);
-		// for(let p of config.solidCells){
-		// 	console.log(p);
-		// }
 		for(let p of config.solidCells){
-			console.log('p:' + p)
 			if(p[0] == i && p[1] == j){
-				console.log('true')
 				return true;
 			}
 		}
@@ -78,7 +72,7 @@ import { each } from "svelte/internal";
 		<div>
 			{#each Array(config.width) as _,row2}
 				{#if isSolid(row,row2)}
-					<div style="background:{config.pieceColor};width:{config.cellWidth}px;height:{config.cellWidth}px;float:left;"></div>
+					<div id = {config.pieceId + "_" + row + "_" + row2} style="background:{config.pieceColor};width:{config.cellWidth}px;height:{config.cellWidth}px;float:left;"></div>
 				{:else}
 					<div style="width:{config.cellWidth}px;height:{config.cellWidth}px;float:left;"></div>
 				{/if}
@@ -88,6 +82,7 @@ import { each } from "svelte/internal";
 </div>
 
 <style>
+
 	.shape {
 		left: 300px;
 		top:200px;
