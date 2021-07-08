@@ -9,10 +9,10 @@
 	export let name;
 
 	// TODO 元素在旋转之后就不能自动吸附到网格上面了
-	// 遍历piece下面的所有颜色方格，检查位置，只要有一个
+	// 遍历piece下面的所有颜色方格，检查位置，只要有一个(元素旋转之后获取的位置并不是实际元素的位置，需要做一次坐标的运算，但是我并不会算。。。。)
 	// TODO 检查是否已经完成拼图了
 	// 遍历所有piece的所有格子，检查每个格子和拼图中所有的div的位置是否重合，如果重合就判定为该位置已经备覆盖
-	// 如果计算出问题的所有的解
+	// 如果计算出指定日期的所有的解
 
 	let cellHeight = 54;
 	let xBarriors = new Array();
@@ -41,8 +41,28 @@
 		for (let c of configs) {
 			let ele = document.getElementById(c.pieceId);
 			ele.addEventListener("mouseup", function (e) {
-				adjustPosition(ele);
+				console.log(ele.style.left + ',' + ele.style.top);
+				let rect = .getBoundingClientRect();
+				console.log(rect.left + ',' + rect.right + ',' + rect.top + ',' + rect.bottom)
+				//debugger
+				let elePositon = getPosition(ele);
+				for(let solidCell of c.solidCells){
+					let eleCell = document.getElementById(`${c.pieceId}_${solidCell[0]}_${solidCell[1]}`);
+					
+					let position = getPosition(eleCell);
+					// console.log(position);
+					let diff = isCloseEnough(position);
+					if(diff != null){
+						ele.style.left = (elePositon.x + diff.x) + "px";
+						ele.style.top = (elePositon.y + diff.y) + "px";
+						checkIsDone();
+						console.log('return');
+						return;
+					}
+				}
+				//adjustPosition(ele);
 			});
+			
 		}
 	}
 
@@ -64,11 +84,31 @@
 			// console.log(x + "," + y);
 			ele.style.left = x + "px";
 			ele.style.top = y + "px";
-			checkIdDone();
+			checkIsDone();
 		}
 	}
 
-	function checkIdDone(){
+	function isCloseEnough(p){
+		let x = -1;
+		let y = -1;
+		for (let xBarrior of xBarriors) {
+			if (Math.abs(xBarrior - p.x) < minDistance) {
+				x = xBarrior;
+			}
+		}
+		for (let yBarrior of yBarriors) {
+			if (Math.abs(yBarrior - p.y) < minDistance) {
+				y = yBarrior;
+			}
+		}
+		if (x != -1 && y != -1) {
+			return {x: x-p.x,y: y - p.y};
+		}else{
+			return null;
+		}
+	}
+
+	function checkIsDone(){
 
 	}
 </script>

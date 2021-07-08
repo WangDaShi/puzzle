@@ -67,7 +67,7 @@
 
 </script>
 
-<div class="shape" id = {config.pieceId} on:click={click} style="width:{config.width * config.cellWidth}px;height:{config.length * config.cellWidth}px;transform:rotate({angle}deg);">
+<div class="shape" id = {config.pieceId} on:click={click} style="left:{config.left};top:{config.top};width:{config.width * config.cellWidth}px;height:{config.length * config.cellWidth}px;transform:rotate({angle}deg);">
 	{#each Array(config.length) as __,row}
 		<div>
 			{#each Array(config.width) as _,row2}
@@ -83,10 +83,10 @@
 
 <style>
 
-	.shape {
+	/* .shape {
 		left: 300px;
 		top:200px;
-	}
+	} */
 
 
 </style>

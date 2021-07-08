@@ -1,5 +1,5 @@
 
-(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35730/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
+(function(l, r) { if (l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (window.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(window.document);
 var app = (function () {
     'use strict';
 
@@ -298,6 +298,12 @@ var app = (function () {
             block.o(local);
         }
     }
+
+    const globals = (typeof window !== 'undefined'
+        ? window
+        : typeof globalThis !== 'undefined'
+            ? globalThis
+            : global);
     function each(items, fn) {
         let str = '';
         for (let i = 0; i < items.length; i += 1) {
@@ -681,7 +687,7 @@ var app = (function () {
     			set_style(div, "width", /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "height", /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "float", "left");
-    			add_location(div, file$1, 76, 5, 1784);
+    			add_location(div, file$1, 76, 5, 1820);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -724,7 +730,7 @@ var app = (function () {
     			set_style(div, "width", /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "height", /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "float", "left");
-    			add_location(div, file$1, 74, 5, 1602);
+    			add_location(div, file$1, 74, 5, 1638);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -824,7 +830,7 @@ var app = (function () {
     			}
 
     			t = space();
-    			add_location(div, file$1, 71, 2, 1522);
+    			add_location(div, file$1, 71, 2, 1558);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, div, anchor);
@@ -898,8 +904,10 @@ var app = (function () {
     				each_blocks[i].c();
     			}
 
-    			attr_dev(div, "class", "shape svelte-g6g8gz");
+    			attr_dev(div, "class", "shape");
     			attr_dev(div, "id", div_id_value = /*config*/ ctx[0].pieceId);
+    			set_style(div, "left", /*config*/ ctx[0].left);
+    			set_style(div, "top", /*config*/ ctx[0].top);
     			set_style(div, "width", /*config*/ ctx[0].width * /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "height", /*config*/ ctx[0].length * /*config*/ ctx[0].cellWidth + "px");
     			set_style(div, "transform", "rotate(" + /*angle*/ ctx[1] + "deg)");
@@ -947,6 +955,14 @@ var app = (function () {
 
     			if (dirty & /*config*/ 1 && div_id_value !== (div_id_value = /*config*/ ctx[0].pieceId)) {
     				attr_dev(div, "id", div_id_value);
+    			}
+
+    			if (dirty & /*config*/ 1) {
+    				set_style(div, "left", /*config*/ ctx[0].left);
+    			}
+
+    			if (dirty & /*config*/ 1) {
+    				set_style(div, "top", /*config*/ ctx[0].top);
     			}
 
     			if (dirty & /*config*/ 1) {
@@ -1125,7 +1141,9 @@ var app = (function () {
         length: 4,
         width: 2,
         cellWidth: 54,
-        solidCells: [[0, 0], [1, 0], [2, 0], [2, 1], [3, 1]]
+        solidCells: [[0, 0], [1, 0], [2, 0], [2, 1], [3, 1]],
+        left:'300px',
+        top:'167px',
     };
 
     let pieceConfig2 = {
@@ -1134,7 +1152,9 @@ var app = (function () {
         length: 3,
         width: 3,
         cellWidth: 54,
-        solidCells: [[0, 2], [1, 0], [1, 1], [1, 2], [2, 0]]
+        solidCells: [[0, 2], [1, 0], [1, 1], [1, 2], [2, 0]],
+        left:'985px',
+        top:'160px',
     };
 
     let pieceConfig3 = {
@@ -1143,6 +1163,8 @@ var app = (function () {
         length: 3,
         width: 3,
         cellWidth: 54,
+        left:'981px',
+        top:'344px',
         solidCells: [[0, 0], [0, 1], [0, 2], [1, 0], [2, 0]]
     };
 
@@ -1152,6 +1174,8 @@ var app = (function () {
         length: 2,
         width: 3,
         cellWidth: 54,
+        left:'290px',
+        top:'400px',
         solidCells: [[0, 0], [0, 2], [1, 0], [1, 1], [1, 2]]
     };
 
@@ -1161,6 +1185,8 @@ var app = (function () {
         length: 2,
         width: 4,
         cellWidth: 54,
+        left:'1087px',
+        top:'390px',
         solidCells: [[0, 3], [1, 0], [1, 1], [1, 2], [1, 3]]
     };
 
@@ -1170,6 +1196,8 @@ var app = (function () {
         length: 3,
         width: 2,
         cellWidth: 54,
+        left:'1215px',
+        top:'182px',
         solidCells: [[0, 0], [0, 1], [1, 0], [1, 1], [2, 0]]
     };
 
@@ -1179,6 +1207,8 @@ var app = (function () {
         length: 2,
         width: 3,
         cellWidth: 54,
+        left:'90px',
+        top:'391px',
         solidCells: [[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2]]
     };
 
@@ -1188,6 +1218,8 @@ var app = (function () {
         length: 4,
         width: 2,
         cellWidth: 54,
+        left:'123px',
+        top:'123px',
         solidCells: [[0, 0], [1, 0], [1, 1], [2, 0], [3, 0]]
     };
 
@@ -1217,21 +1249,23 @@ var app = (function () {
     };
 
     /* src/App.svelte generated by Svelte v3.38.3 */
+
+    const { console: console_1 } = globals;
     const file = "src/App.svelte";
 
     function get_each_context(ctx, list, i) {
     	const child_ctx = ctx.slice();
-    	child_ctx[8] = list[i];
+    	child_ctx[9] = list[i];
     	return child_ctx;
     }
 
-    // (172:1) {#each configs as c}
+    // (212:1) {#each configs as c}
     function create_each_block(ctx) {
     	let puzzlepiece;
     	let current;
 
     	puzzlepiece = new PuzzlePiece({
-    			props: { config: /*c*/ ctx[8] },
+    			props: { config: /*c*/ ctx[9] },
     			$$inline: true
     		});
 
@@ -1262,7 +1296,7 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(172:1) {#each configs as c}",
+    		source: "(212:1) {#each configs as c}",
     		ctx
     	});
 
@@ -1532,111 +1566,111 @@ var app = (function () {
     			}
 
     			attr_dev(h1, "class", "svelte-1p92mbg");
-    			add_location(h1, file, 103, 1, 1858);
+    			add_location(h1, file, 143, 1, 2983);
     			attr_dev(td0, "id", "jan");
     			attr_dev(td0, "class", "svelte-1p92mbg");
-    			add_location(td0, file, 108, 4, 2003);
+    			add_location(td0, file, 148, 4, 3128);
     			attr_dev(td1, "class", "svelte-1p92mbg");
-    			add_location(td1, file, 109, 4, 2029);
+    			add_location(td1, file, 149, 4, 3154);
     			attr_dev(td2, "class", "svelte-1p92mbg");
-    			add_location(td2, file, 110, 4, 2046);
+    			add_location(td2, file, 150, 4, 3171);
     			attr_dev(td3, "class", "svelte-1p92mbg");
-    			add_location(td3, file, 111, 4, 2063);
+    			add_location(td3, file, 151, 4, 3188);
     			attr_dev(td4, "class", "svelte-1p92mbg");
-    			add_location(td4, file, 112, 4, 2080);
+    			add_location(td4, file, 152, 4, 3205);
     			attr_dev(td5, "class", "svelte-1p92mbg");
-    			add_location(td5, file, 113, 4, 2097);
-    			add_location(tr0, file, 107, 3, 1994);
+    			add_location(td5, file, 153, 4, 3222);
+    			add_location(tr0, file, 147, 3, 3119);
     			attr_dev(td6, "class", "svelte-1p92mbg");
-    			add_location(td6, file, 117, 4, 2154);
+    			add_location(td6, file, 157, 4, 3279);
     			attr_dev(td7, "class", "svelte-1p92mbg");
-    			add_location(td7, file, 118, 4, 2171);
+    			add_location(td7, file, 158, 4, 3296);
     			attr_dev(td8, "class", "svelte-1p92mbg");
-    			add_location(td8, file, 119, 4, 2188);
+    			add_location(td8, file, 159, 4, 3313);
     			attr_dev(td9, "class", "svelte-1p92mbg");
-    			add_location(td9, file, 120, 4, 2205);
+    			add_location(td9, file, 160, 4, 3330);
     			attr_dev(td10, "class", "svelte-1p92mbg");
-    			add_location(td10, file, 121, 4, 2222);
+    			add_location(td10, file, 161, 4, 3347);
     			attr_dev(td11, "class", "svelte-1p92mbg");
-    			add_location(td11, file, 122, 4, 2239);
-    			add_location(tr1, file, 116, 3, 2145);
+    			add_location(td11, file, 162, 4, 3364);
+    			add_location(tr1, file, 156, 3, 3270);
     			attr_dev(td12, "class", "svelte-1p92mbg");
-    			add_location(td12, file, 126, 4, 2296);
+    			add_location(td12, file, 166, 4, 3421);
     			attr_dev(td13, "class", "svelte-1p92mbg");
-    			add_location(td13, file, 127, 4, 2311);
+    			add_location(td13, file, 167, 4, 3436);
     			attr_dev(td14, "class", "svelte-1p92mbg");
-    			add_location(td14, file, 128, 4, 2326);
+    			add_location(td14, file, 168, 4, 3451);
     			attr_dev(td15, "class", "svelte-1p92mbg");
-    			add_location(td15, file, 129, 4, 2341);
+    			add_location(td15, file, 169, 4, 3466);
     			attr_dev(td16, "class", "svelte-1p92mbg");
-    			add_location(td16, file, 130, 4, 2356);
+    			add_location(td16, file, 170, 4, 3481);
     			attr_dev(td17, "class", "svelte-1p92mbg");
-    			add_location(td17, file, 131, 4, 2371);
+    			add_location(td17, file, 171, 4, 3496);
     			attr_dev(td18, "class", "svelte-1p92mbg");
-    			add_location(td18, file, 132, 4, 2386);
-    			add_location(tr2, file, 125, 3, 2287);
+    			add_location(td18, file, 172, 4, 3511);
+    			add_location(tr2, file, 165, 3, 3412);
     			attr_dev(td19, "class", "svelte-1p92mbg");
-    			add_location(td19, file, 135, 4, 2418);
+    			add_location(td19, file, 175, 4, 3543);
     			attr_dev(td20, "class", "svelte-1p92mbg");
-    			add_location(td20, file, 136, 4, 2433);
+    			add_location(td20, file, 176, 4, 3558);
     			attr_dev(td21, "class", "svelte-1p92mbg");
-    			add_location(td21, file, 137, 4, 2448);
+    			add_location(td21, file, 177, 4, 3573);
     			attr_dev(td22, "class", "svelte-1p92mbg");
-    			add_location(td22, file, 138, 4, 2464);
+    			add_location(td22, file, 178, 4, 3589);
     			attr_dev(td23, "class", "svelte-1p92mbg");
-    			add_location(td23, file, 139, 4, 2480);
+    			add_location(td23, file, 179, 4, 3605);
     			attr_dev(td24, "class", "svelte-1p92mbg");
-    			add_location(td24, file, 140, 4, 2496);
+    			add_location(td24, file, 180, 4, 3621);
     			attr_dev(td25, "class", "svelte-1p92mbg");
-    			add_location(td25, file, 141, 4, 2512);
-    			add_location(tr3, file, 134, 3, 2409);
+    			add_location(td25, file, 181, 4, 3637);
+    			add_location(tr3, file, 174, 3, 3534);
     			attr_dev(td26, "class", "svelte-1p92mbg");
-    			add_location(td26, file, 144, 4, 2545);
+    			add_location(td26, file, 184, 4, 3670);
     			attr_dev(td27, "class", "svelte-1p92mbg");
-    			add_location(td27, file, 145, 4, 2561);
+    			add_location(td27, file, 185, 4, 3686);
     			attr_dev(td28, "class", "svelte-1p92mbg");
-    			add_location(td28, file, 146, 4, 2577);
+    			add_location(td28, file, 186, 4, 3702);
     			attr_dev(td29, "class", "svelte-1p92mbg");
-    			add_location(td29, file, 147, 4, 2593);
+    			add_location(td29, file, 187, 4, 3718);
     			attr_dev(td30, "class", "svelte-1p92mbg");
-    			add_location(td30, file, 148, 4, 2609);
+    			add_location(td30, file, 188, 4, 3734);
     			attr_dev(td31, "class", "svelte-1p92mbg");
-    			add_location(td31, file, 149, 4, 2625);
+    			add_location(td31, file, 189, 4, 3750);
     			attr_dev(td32, "class", "svelte-1p92mbg");
-    			add_location(td32, file, 150, 4, 2641);
-    			add_location(tr4, file, 143, 3, 2536);
+    			add_location(td32, file, 190, 4, 3766);
+    			add_location(tr4, file, 183, 3, 3661);
     			attr_dev(td33, "class", "svelte-1p92mbg");
-    			add_location(td33, file, 153, 4, 2674);
+    			add_location(td33, file, 193, 4, 3799);
     			attr_dev(td34, "class", "svelte-1p92mbg");
-    			add_location(td34, file, 154, 4, 2690);
+    			add_location(td34, file, 194, 4, 3815);
     			attr_dev(td35, "class", "svelte-1p92mbg");
-    			add_location(td35, file, 155, 4, 2706);
+    			add_location(td35, file, 195, 4, 3831);
     			attr_dev(td36, "class", "svelte-1p92mbg");
-    			add_location(td36, file, 156, 4, 2722);
+    			add_location(td36, file, 196, 4, 3847);
     			attr_dev(td37, "class", "svelte-1p92mbg");
-    			add_location(td37, file, 157, 4, 2738);
+    			add_location(td37, file, 197, 4, 3863);
     			attr_dev(td38, "class", "svelte-1p92mbg");
-    			add_location(td38, file, 158, 4, 2754);
+    			add_location(td38, file, 198, 4, 3879);
     			attr_dev(td39, "class", "svelte-1p92mbg");
-    			add_location(td39, file, 159, 4, 2770);
-    			add_location(tr5, file, 152, 3, 2665);
+    			add_location(td39, file, 199, 4, 3895);
+    			add_location(tr5, file, 192, 3, 3790);
     			attr_dev(td40, "class", "svelte-1p92mbg");
-    			add_location(td40, file, 162, 4, 2803);
+    			add_location(td40, file, 202, 4, 3928);
     			attr_dev(td41, "class", "svelte-1p92mbg");
-    			add_location(td41, file, 163, 4, 2819);
+    			add_location(td41, file, 203, 4, 3944);
     			attr_dev(td42, "class", "svelte-1p92mbg");
-    			add_location(td42, file, 164, 4, 2835);
-    			add_location(tr6, file, 161, 3, 2794);
+    			add_location(td42, file, 204, 4, 3960);
+    			add_location(tr6, file, 201, 3, 3919);
     			attr_dev(table, "id", "puzzleTable");
     			attr_dev(table, "border", "1");
     			attr_dev(table, "cellspacing", "0");
     			set_style(table, "margin", "auto");
-    			add_location(table, file, 106, 2, 1919);
+    			add_location(table, file, 146, 2, 3044);
     			attr_dev(div, "class", "mainDiv");
     			set_style(div, "width", "100%");
-    			add_location(div, file, 105, 1, 1876);
+    			add_location(div, file, 145, 1, 3001);
     			attr_dev(main, "class", "svelte-1p92mbg");
-    			add_location(main, file, 102, 0, 1850);
+    			add_location(main, file, 142, 0, 2975);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -1814,7 +1848,7 @@ var app = (function () {
     	return block;
     }
 
-    function checkIdDone() {
+    function checkIsDone() {
     	
     }
 
@@ -1824,10 +1858,10 @@ var app = (function () {
     	let { name } = $$props;
 
     	// TODO 元素在旋转之后就不能自动吸附到网格上面了
-    	// 遍历piece下面的所有颜色方格，检查位置，只要有一个
+    	// 遍历piece下面的所有颜色方格，检查位置，只要有一个(元素旋转之后获取的位置并不是实际元素的位置，需要做一次坐标的运算，但是我并不会算。。。。)
     	// TODO 检查是否已经完成拼图了
     	// 遍历所有piece的所有格子，检查每个格子和拼图中所有的div的位置是否重合，如果重合就判定为该位置已经备覆盖
-    	// 如果计算出问题的所有的解
+    	// 如果计算出指定日期的所有的解
     	let cellHeight = 54;
 
     	let xBarriors = new Array();
@@ -1856,8 +1890,28 @@ var app = (function () {
     			let ele = document.getElementById(c.pieceId);
 
     			ele.addEventListener("mouseup", function (e) {
-    				adjustPosition(ele);
-    			});
+    				console.log(ele.style.left + "," + ele.style.top);
+    				let rect = ele.getBoundingClientRect();
+    				console.log(rect.left + "," + rect.right + "," + rect.top + "," + rect.bottom);
+
+    				//debugger
+    				let elePositon = getPosition(ele);
+
+    				for (let solidCell of c.solidCells) {
+    					let eleCell = document.getElementById(`${c.pieceId}_${solidCell[0]}_${solidCell[1]}`);
+    					let position = getPosition(eleCell);
+
+    					// console.log(position);
+    					let diff = isCloseEnough(position);
+
+    					if (diff != null) {
+    						ele.style.left = elePositon.x + diff.x + "px";
+    						ele.style.top = elePositon.y + diff.y + "px";
+    						console.log("return");
+    						return;
+    					}
+    				}
+    			}); //adjustPosition(ele);
     		}
     	}
 
@@ -1886,10 +1940,33 @@ var app = (function () {
     		}
     	}
 
+    	function isCloseEnough(p) {
+    		let x = -1;
+    		let y = -1;
+
+    		for (let xBarrior of xBarriors) {
+    			if (Math.abs(xBarrior - p.x) < minDistance) {
+    				x = xBarrior;
+    			}
+    		}
+
+    		for (let yBarrior of yBarriors) {
+    			if (Math.abs(yBarrior - p.y) < minDistance) {
+    				y = yBarrior;
+    			}
+    		}
+
+    		if (x != -1 && y != -1) {
+    			return { x: x - p.x, y: y - p.y };
+    		} else {
+    			return null;
+    		}
+    	}
+
     	const writable_props = ["name"];
 
     	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<App> was created with unknown prop '${key}'`);
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console_1.warn(`<App> was created with unknown prop '${key}'`);
     	});
 
     	$$self.$$set = $$props => {
@@ -1910,7 +1987,8 @@ var app = (function () {
     		minDistance,
     		addAutoFixPosition,
     		adjustPosition,
-    		checkIdDone
+    		isCloseEnough,
+    		checkIsDone
     	});
 
     	$$self.$inject_state = $$props => {
@@ -1944,7 +2022,7 @@ var app = (function () {
     		const props = options.props || {};
 
     		if (/*name*/ ctx[0] === undefined && !("name" in props)) {
-    			console.warn("<App> was created without expected prop 'name'");
+    			console_1.warn("<App> was created without expected prop 'name'");
     		}
     	}
 
